@@ -5,13 +5,15 @@ VisualStudioVersion = 17.0.32112.339
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Albelli.Shop.Api", "Albelli.Shop.Api\Albelli.Shop.Api.csproj", "{D725D874-41D2-4D2F-AE07-09647C518521}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Albelli.Shop.Model", "Albelli.Shop.Model\Albelli.Shop.Model.csproj", "{315B9CAB-F105-4F5B-A47A-D2521584749C}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Albelli.Shop.Model", "Albelli.Shop.Model\Albelli.Shop.Model.csproj", "{315B9CAB-F105-4F5B-A47A-D2521584749C}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Albelli.Shop.Data", "Albelli.Shop.Data\Albelli.Shop.Data.csproj", "{6FC37B3D-7392-4752-9384-331B9AB46592}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Albelli.Shop.Data", "Albelli.Shop.Data\Albelli.Shop.Data.csproj", "{6FC37B3D-7392-4752-9384-331B9AB46592}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Albelli.Shop.BusinessLogic", "Albelli.Shop.BusinessLogic\Albelli.Shop.BusinessLogic.csproj", "{523B42E0-49F9-4AC7-83F1-E878382CA3F7}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Albelli.Shop.BusinessLogic", "Albelli.Shop.BusinessLogic\Albelli.Shop.BusinessLogic.csproj", "{523B42E0-49F9-4AC7-83F1-E878382CA3F7}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Albelli.Shop.Test", "Albelli.Shop.Test\Albelli.Shop.Test.csproj", "{B67EF49A-0BFA-44DA-8391-0910390D2BD0}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Albelli.Shop.Test", "Albelli.Shop.Test\Albelli.Shop.Test.csproj", "{B67EF49A-0BFA-44DA-8391-0910390D2BD0}"
+EndProject
+Project("{E53339B2-1760-4266-BCC7-CA923CBCF16C}") = "docker-compose", "docker-compose.dcproj", "{0DB674C8-AEE4-4E63-9193-FFC8E3F15463}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -39,6 +41,10 @@ Global
 		{B67EF49A-0BFA-44DA-8391-0910390D2BD0}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{B67EF49A-0BFA-44DA-8391-0910390D2BD0}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{B67EF49A-0BFA-44DA-8391-0910390D2BD0}.Release|Any CPU.Build.0 = Release|Any CPU
+		{0DB674C8-AEE4-4E63-9193-FFC8E3F15463}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{0DB674C8-AEE4-4E63-9193-FFC8E3F15463}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{0DB674C8-AEE4-4E63-9193-FFC8E3F15463}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{0DB674C8-AEE4-4E63-9193-FFC8E3F15463}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
