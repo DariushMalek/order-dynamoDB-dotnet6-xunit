@@ -1,11 +1,10 @@
-﻿namespace Albelli.Shop.Model.Entities
+﻿namespace Albelli.Shop.Model.Entities;
+
+public enum EffectiveStatusCode
 {
-    public enum EffectiveStatusCode
-    {
-        Active,
+    Active,
 
-        InActive,
+    InActive,
 
-        Deleted
-    }
+    Deleted
 }

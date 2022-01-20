@@ -1,26 +1,25 @@
 ﻿using Amazon.DynamoDBv2.DataModel;
 
-namespace Albelli.Shop.Model.Entities
+namespace Albelli.Shop.Model.Entities;
+
+public class Order : Entity
 {
-    public class Order : Entity
-    {
-        [DynamoDBHashKey]
-        public int CustomerId { get; set; }
+    [DynamoDBHashKey]
+    public int CustomerId { get; set; }
 
-        [DynamoDBRangeKey]
-        public int OrderId { get; set; }
+    [DynamoDBRangeKey]
+    public int OrderId { get; set; }
 
-        [DynamoDBProperty]
-        public IEnumerable<OrderLine> Lines { get; set; }
+    [DynamoDBProperty]
+    public IEnumerable<OrderLine> Lines { get; set; }
 
-        [DynamoDBProperty]
-        public double RequiredBinWidthInMillimeters { get; set; }
-    }
+    [DynamoDBProperty]
+    public double RequiredBinWidthInMillimeters { get; set; }
+}
 
-    public class OrderLine
-    {
-        public int Quantity { get; set; }
+public class OrderLine
+{
+    public int Quantity { get; set; }
 
-        public int ProductId { get; set; }
-    }
+    public int ProductId { get; set; }
 }

@@ -1,11 +1,10 @@
-﻿namespace Albelli.Shop.Data
+﻿namespace Albelli.Shop.Data;
+
+public static class DataOptions
 {
-    public static class DataOptions
-    {
-        public static string ProductTable = "Product";
+    public static string ProductTable = "Product";
 
-        public static string ProductTypeTable = "ProductType";
+    public static string ProductTypeTable = "ProductType";
 
-        public static string OrderTable = "Order";
-    }
+    public static string OrderTable = "Order";
 }

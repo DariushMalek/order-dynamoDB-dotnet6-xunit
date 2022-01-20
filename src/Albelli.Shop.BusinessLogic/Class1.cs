@@ -1,7 +1,6 @@
-﻿namespace Albelli.Shop.BusinessLogic
-{
-    public class Class1
-    {
+﻿namespace Albelli.Shop.BusinessLogic;
 
-    }
+public class Class1
+{
+
 }
