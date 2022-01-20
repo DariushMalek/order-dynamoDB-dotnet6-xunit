@@ -6,4 +6,9 @@
     <Nullable>enable</Nullable>
   </PropertyGroup>
 
+  <ItemGroup>
+    <ProjectReference Include="..\Albelli.Shop.Data\Albelli.Shop.Data.csproj" />
+    <ProjectReference Include="..\Albelli.Shop.Model\Albelli.Shop.Model.csproj" />
+  </ItemGroup>
+
 </Project>
