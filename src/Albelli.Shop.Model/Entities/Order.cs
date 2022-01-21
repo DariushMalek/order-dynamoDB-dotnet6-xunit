@@ -10,8 +10,7 @@ public class Order : Entity
     [DynamoDBRangeKey]
     public int OrderId { get; set; }
 
-    [DynamoDBProperty]
-    public IEnumerable<OrderLine> Lines { get; set; }
+    public List<OrderLine> Lines { get; set; }
 
     [DynamoDBProperty]
     public double RequiredBinWidthInMillimeters { get; set; }

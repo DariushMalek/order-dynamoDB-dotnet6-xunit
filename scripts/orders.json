@@ -1,0 +1,22 @@
+{
+    "Order":[
+        {
+            "PutRequest": {
+                "Item": {
+                    "CustomerId": {"N": "500"},
+					"OrderId": {"N": "1000"},
+                    "Lines": {
+                        "L": [
+                            {"M":{"Quantity":{"N":"1"},"ProductId":{"N":"201"}}},
+							{"M":{"Quantity":{"N":"2"},"ProductId":{"N":"203"}}}
+                        ]
+                    },
+					"RequiredBinWidthInMillimeters": {"N": "19.4"},
+					"StatusCode": {"N": "0"},
+					"CreatedAt": {"S": "2022-01-21T12:06:00.064Z"},
+					"CreatedBy": {"S": "user1"}
+                }
+            }
+        }
+    ]
+}

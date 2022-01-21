@@ -1,0 +1,59 @@
+{
+    "ProductType": [
+        {
+            "PutRequest": {
+                "Item": {
+                    "ProductTypeId": {"N": "100"},
+                    "ProductTypeName": {"S": "PhotoBook"},
+					"StatusCode": {"N": "0"},
+					"CreatedAt": {"S": "2022-01-21T12:06:00.064Z"},
+					"CreatedBy": {"S": "user1"}
+                }
+            }
+        },
+        {
+            "PutRequest": {
+                "Item": {
+                    "ProductTypeId": {"N": "101"},
+                    "ProductTypeName": {"S": "Calendar"},
+					"StatusCode": {"N": "0"},
+					"CreatedAt": {"S": "2022-01-21T12:06:00.064Z"},
+					"CreatedBy": {"S": "user1"}
+                }
+            }
+        },
+        {
+            "PutRequest": {
+                "Item": {
+                    "ProductTypeId": {"N": "102"},
+                    "ProductTypeName": {"S": "Canvas"},
+					"StatusCode": {"N": "0"},
+					"CreatedAt": {"S": "2022-01-21T12:06:00.064Z"},
+					"CreatedBy": {"S": "user1"}
+                }
+            }
+        },
+		{
+            "PutRequest": {
+                "Item": {
+                    "ProductTypeId": {"N": "103"},
+                    "ProductTypeName": {"S": "Cards"},
+					"StatusCode": {"N": "0"},
+					"CreatedAt": {"S": "2022-01-21T12:06:00.064Z"},
+					"CreatedBy": {"S": "user1"}
+                }
+            }
+        },
+		{
+            "PutRequest": {
+                "Item": {
+                    "ProductTypeId": {"N": "104"},
+                    "ProductTypeName": {"S": "Mug"},
+					"StatusCode": {"N": "0"},
+					"CreatedAt": {"S": "2022-01-21T12:06:00.064Z"},
+					"CreatedBy": {"S": "user1"}
+                }
+            }
+        }
+    ]
+}

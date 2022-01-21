@@ -16,7 +16,15 @@ else
             AttributeName=ProductTypeId,KeyType=HASH `
         --provisioned-throughput `
             ReadCapacityUnits=10,WriteCapacityUnits=5
-
+	
+	
+	aws dynamodb --endpoint-url http://localhost:9000  `
+		batch-write-item  `
+		--request-items file://scripts/product-types.json   `
+		--return-consumed-capacity INDEXES  `
+		--return-item-collection-metrics SIZE
+	
+	
     Write-Host "The ProductType Table has been created."
 }
 
@@ -40,7 +48,13 @@ else
 			AttributeName=ProductId,KeyType=RANGE `
         --provisioned-throughput `
             ReadCapacityUnits=10,WriteCapacityUnits=5
-
+	
+	aws dynamodb --endpoint-url http://localhost:9000  `
+		batch-write-item  `
+		--request-items file://scripts/products.json   `
+		--return-consumed-capacity INDEXES  `
+		--return-item-collection-metrics SIZE
+	
     Write-Host "The Product Table has been created."
 }
 
@@ -64,6 +78,12 @@ else
 			AttributeName=OrderId,KeyType=RANGE `
         --provisioned-throughput `
             ReadCapacityUnits=10,WriteCapacityUnits=5
-
+	
+	aws dynamodb --endpoint-url http://localhost:9000  `
+		batch-write-item  `
+		--request-items file://scripts/orders.json   `
+		--return-consumed-capacity INDEXES  `
+		--return-item-collection-metrics SIZE
+	
     Write-Host "The Order Table has been created."
 }
