@@ -2,9 +2,17 @@
 using Albelli.Shop.Model.Requests;
 using Albelli.Shop.Model.Response;
 
-namespace Albelli.Shop.Model.Mapper;
+namespace Albelli.Shop.BusinessLogic.Mapper;
 
-public  class OrderMapper
+public interface IOrderMapper
+{
+    IEnumerable<Order> Convert(IEnumerable<RequestOrder> orderResponseModel);
+    Order Convert(RequestOrder orderRequestModel);
+    IEnumerable<ResponseOrder> Convert(IEnumerable<Order> orderResponseModel);
+    ResponseOrder Convert(Order orderModel);
+}
+
+public  class OrderMapper : IOrderMapper
 {
     public IEnumerable<Order> Convert(IEnumerable<RequestOrder> orderResponseModel)
     {
@@ -17,7 +25,6 @@ public  class OrderMapper
         {
             OrderId = orderRequestModel.OrderId,
             CustomerId = orderRequestModel.CustomerId,
-            RequiredBinWidthInMillimeters = orderRequestModel.RequiredBinWidthInMillimeters,
             Lines = orderRequestModel.Lines.Select(n => new OrderLine()
                 {
                     ProductId = n.ProductId,
