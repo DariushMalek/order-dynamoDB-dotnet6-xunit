@@ -1,10 +1,12 @@
-﻿using Amazon.DynamoDBv2.DataModel;
+﻿using Albelli.Shop.Model.Entities;
+using Amazon.DynamoDBv2.DataModel;
+using Amazon.DynamoDBv2.DocumentModel;
 
 namespace Albelli.Shop.Data.Repositories;
 
 public interface IProductRepository
 {
-
+    Task<Product> GetByProductIdAsync(string productId, CancellationToken cancellationToken);
 }
 
 public class ProductRepository : IProductRepository
@@ -14,5 +16,23 @@ public class ProductRepository : IProductRepository
     public ProductRepository(IDynamoDBContext dynamoDbContext)
     {
         _dynamoDbContext = dynamoDbContext;
+    }
+
+    public async Task<Product> GetByProductIdAsync(string productId, CancellationToken cancellationToken)
+    {
+        var scanConditions = new List<ScanCondition>
+        {
+            new(
+                nameof(EffectiveStatusCode),
+                ScanOperator.Equal,
+                EffectiveStatusCode.Active),
+            new(
+                "ProductId",
+                ScanOperator.Equal,
+                productId)
+        };
+        var result = await _dynamoDbContext.ScanAsync<Product>(scanConditions,
+            new DynamoDBOperationConfig { OverrideTableName = DataOptions.ProductTable }).GetRemainingAsync(cancellationToken);
+        return result.FirstOrDefault();
     }
 }
