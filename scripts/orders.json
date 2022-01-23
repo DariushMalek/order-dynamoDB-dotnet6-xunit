@@ -12,7 +12,7 @@
                         ]
                     },
 					"RequiredBinWidthInMillimeters": {"N": "19.4"},
-					"StatusCode": {"N": "0"},
+					"EffectiveStatusCode": {"N": "0"},
 					"CreatedAt": {"S": "2022-01-21T12:06:00.064Z"},
 					"CreatedBy": {"S": "user1"}
                 }

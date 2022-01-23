@@ -8,7 +8,7 @@
                     "ProductName": {"S": "ArtPhotoBook"},
 					"WidthInMillimeters": {"N": "19"},
 					"StackSize": {"N": "1"},
-					"StatusCode": {"N": "0"},
+					"EffectiveStatusCode": {"N": "0"},
 					"CreatedAt": {"S": "2022-01-21T12:06:00.064Z"},
 					"CreatedBy": {"S": "user1"}
                 }
@@ -22,7 +22,7 @@
                     "ProductName": {"S": "GlossyCalendar"},
 					"WidthInMillimeters": {"N": "10"},
 					"StackSize": {"N": "1"},
-					"StatusCode": {"N": "0"},
+					"EffectiveStatusCode": {"N": "0"},
 					"CreatedAt": {"S": "2022-01-21T12:06:00.064Z"},
 					"CreatedBy": {"S": "user1"}
                 }
@@ -36,7 +36,7 @@
                     "ProductName": {"S": "OilCanvas"},
 					"WidthInMillimeters": {"N": "16"},
 					"StackSize": {"N": "1"},
-					"StatusCode": {"N": "0"},
+					"EffectiveStatusCode": {"N": "0"},
 					"CreatedAt": {"S": "2022-01-21T12:06:00.064Z"},
 					"CreatedBy": {"S": "user1"}
                 }
@@ -50,7 +50,7 @@
                     "ProductName": {"S": "GreetingCards"},
 					"WidthInMillimeters": {"N": "4.7"},
 					"StackSize": {"N": "1"},
-					"StatusCode": {"N": "0"},
+					"EffectiveStatusCode": {"N": "0"},
 					"CreatedAt": {"S": "2022-01-21T12:06:00.064Z"},
 					"CreatedBy": {"S": "user1"}
                 }
@@ -64,7 +64,7 @@
                     "ProductName": {"S": "StarbucksMug"},
 					"WidthInMillimeters": {"N": "94"},
 					"StackSize": {"N": "4"},
-					"StatusCode": {"N": "0"},
+					"EffectiveStatusCode": {"N": "0"},
 					"CreatedAt": {"S": "2022-01-21T12:06:00.064Z"},
 					"CreatedBy": {"S": "user1"}
                 }
