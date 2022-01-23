@@ -2,7 +2,7 @@
 
 namespace Albelli.Shop.Model.Entities;
 
-public class Product
+public class Product : Entity
 {
     [DynamoDBHashKey]
     public int ProductTypeId { get; set; }

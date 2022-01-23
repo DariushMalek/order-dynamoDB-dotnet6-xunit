@@ -1,3 +1,4 @@
+using Albelli.Shop.BusinessLogic;
 using Albelli.Shop.Data;
 using Amazon.DynamoDBv2;
 
@@ -16,6 +17,7 @@ builder.Services.AddDefaultAWSOptions(awsOptions);
 builder.Services.AddAWSService<IAmazonDynamoDB>();
 
 builder.Services.AddDataServices();
+builder.Services.AddBusinessLogicServices();
 
 var app = builder.Build();
 
@@ -31,3 +33,5 @@ app.UseAuthorization();
 app.MapControllers();
 
 app.Run();
+
+public partial class Program { }

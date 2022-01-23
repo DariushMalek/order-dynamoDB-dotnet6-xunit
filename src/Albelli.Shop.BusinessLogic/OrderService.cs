@@ -48,7 +48,7 @@ public class OrderService : IOrderService
 
         var order = _orderMapper.Convert(requestOrder);
         order.CreatedAt = DateTime.Now;
-        order.StatusCode = EffectiveStatusCode.Active;
+        order.EffectiveStatusCode = EffectiveStatusCode.Active;
         order.RequiredBinWidthInMillimeters = await CalcRequiredBinWidth(order.Lines, cancellationToken);
         await _orderRepository.InsertAsync(order, cancellationToken);
 

@@ -6,7 +6,7 @@ namespace Albelli.Shop.Model.Entities;
 public class Entity
 {
     [DynamoDBProperty]
-    public EffectiveStatusCode StatusCode { get; set; }
+    public EffectiveStatusCode EffectiveStatusCode { get; set; }
 
     [DynamoDBProperty]
     public DateTime CreatedAt { get; set; }

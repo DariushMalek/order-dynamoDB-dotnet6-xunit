@@ -29,7 +29,7 @@ public class OrdersController : ControllerBase
         return BadRequest(result.ValidationResult?.ErrorMessage);
     }
 
-    [HttpGet("{oderId}")]
+    [HttpGet("{orderId}")]
     public async Task<ActionResult<ResponseOrder>> GetAsync(int orderId, CancellationToken cancellationToken)
     {
         var result = await _orderService.GetOrder(orderId, cancellationToken);
