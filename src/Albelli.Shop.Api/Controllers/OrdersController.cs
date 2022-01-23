@@ -19,14 +19,26 @@ public class OrdersController : ControllerBase
     [HttpPost]
     public async Task<IActionResult> PostAsync(RequestOrder requestOrder, CancellationToken cancellationToken)
     {
-        await _orderService.CreateOrder(requestOrder, cancellationToken);
-        return Ok();
+        var result = await _orderService.CreateOrder(requestOrder, cancellationToken);
+
+        if (result.IsSuccess())
+        {
+            return Ok();
+        }
+
+        return BadRequest(result.ValidationResult?.ErrorMessage);
     }
 
     [HttpGet("{oderId}")]
     public async Task<ActionResult<ResponseOrder>> GetAsync(int orderId, CancellationToken cancellationToken)
     {
-        var order = await _orderService.GetOrder(orderId, cancellationToken);
-        return Ok(order);
+        var result = await _orderService.GetOrder(orderId, cancellationToken);
+
+        if (result.IsSuccess())
+        {
+            return Ok(result.GetReuslt<ResponseOrder>());
+        }
+
+        return BadRequest(result.ValidationResult?.ErrorMessage);
     }
 }

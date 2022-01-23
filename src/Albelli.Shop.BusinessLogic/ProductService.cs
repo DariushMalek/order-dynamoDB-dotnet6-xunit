@@ -24,7 +24,7 @@ public class ProductService : IProductService
 
     public async Task<ResponseResult> GetProduct(int productId, CancellationToken cancellationToken)
     {
-        var product = await _productRepository.GetByProductIdAsync(productId, cancellationToken);
+        var product = await _productRepository.GetProductByIdAsync(productId, cancellationToken);
         if (product == null)
         {
             return new ResponseResult(Messages.ProductNotFound);

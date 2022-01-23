@@ -26,7 +26,7 @@ public class ResponseResult
 
     public bool IsSuccess()
     {
-        return ValidationResult == ValidationResult.Success;
+        return ValidationResult == null;
     }
 
     public T GetReuslt<T>()

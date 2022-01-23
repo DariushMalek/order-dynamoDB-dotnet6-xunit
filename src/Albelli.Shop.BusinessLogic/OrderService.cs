@@ -41,7 +41,7 @@ public class OrderService : IOrderService
             return new ResponseResult(Messages.OrderHasNotAnyProduct);
         }
 
-        if (!requestOrder.Lines.GroupBy(n=>n.ProductId).Any(a=>a.Count() > 1))
+        if (requestOrder.Lines.GroupBy(n=>n.ProductId).Any(a=>a.Count() > 1))
         {
             return new ResponseResult(Messages.ProductIsDuplicated);
         }
@@ -52,12 +52,12 @@ public class OrderService : IOrderService
         order.RequiredBinWidthInMillimeters = await CalcRequiredBinWidth(order.Lines, cancellationToken);
         await _orderRepository.InsertAsync(order, cancellationToken);
 
-        return new ResponseResult();
+        return new ResponseResult(_orderMapper.Convert(order));
     }
 
     public async Task<ResponseResult> GetOrder(int orderId, CancellationToken cancellationToken)
     {
-        var order = await _orderRepository.GetByOrderIdAsync(orderId, cancellationToken);
+        var order = await _orderRepository.GetOrderByIdAsync(orderId, cancellationToken);
         if (order == null)
         {
             return new ResponseResult(Messages.OrderNotFound);
