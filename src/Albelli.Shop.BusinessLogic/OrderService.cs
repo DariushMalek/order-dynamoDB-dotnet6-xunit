@@ -1,10 +1,6 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-using Albelli.Shop.BusinessLogic.Mapper;
+﻿using Albelli.Shop.BusinessLogic.Mapper;
 using Albelli.Shop.Data.Repositories;
+using Albelli.Shop.Model;
 using Albelli.Shop.Model.Entities;
 using Albelli.Shop.Model.Requests;
 using Albelli.Shop.Model.Response;
@@ -13,9 +9,9 @@ namespace Albelli.Shop.BusinessLogic;
 
 public interface IOrderService
 {
-    public Task CreateOrder(RequestOrder order, CancellationToken cancellationToken);
+    public Task<ResponseResult> CreateOrder(RequestOrder order, CancellationToken cancellationToken);
 
-    public Task<ResponseOrder> GetOrder(int orderId, CancellationToken cancellationToken);
+    public Task<ResponseResult> GetOrder(int orderId, CancellationToken cancellationToken);
 }
 
 public class OrderService : IOrderService
@@ -33,19 +29,40 @@ public class OrderService : IOrderService
         _productService = productService;
     }
 
-    public async Task CreateOrder(RequestOrder requestOrder, CancellationToken cancellationToken)
+    public async Task<ResponseResult> CreateOrder(RequestOrder requestOrder, CancellationToken cancellationToken)
     {
+        if (await OrderIsExist(requestOrder.OrderId, cancellationToken))
+        {
+            return new ResponseResult(Messages.OrderIsExist);
+        }
+
+        if (!requestOrder.Lines.Any())
+        {
+            return new ResponseResult(Messages.OrderHasNotAnyProduct);
+        }
+
+        if (!requestOrder.Lines.GroupBy(n=>n.ProductId).Any(a=>a.Count() > 1))
+        {
+            return new ResponseResult(Messages.ProductIsDuplicated);
+        }
+
         var order = _orderMapper.Convert(requestOrder);
         order.CreatedAt = DateTime.Now;
         order.StatusCode = EffectiveStatusCode.Active;
         order.RequiredBinWidthInMillimeters = await CalcRequiredBinWidth(order.Lines, cancellationToken);
         await _orderRepository.InsertAsync(order, cancellationToken);
+
+        return new ResponseResult();
     }
 
-    public async Task<ResponseOrder> GetOrder(int orderId, CancellationToken cancellationToken)
+    public async Task<ResponseResult> GetOrder(int orderId, CancellationToken cancellationToken)
     {
         var order = await _orderRepository.GetByOrderIdAsync(orderId, cancellationToken);
-        return _orderMapper.Convert(order);
+        if (order == null)
+        {
+            return new ResponseResult(Messages.OrderNotFound);
+        }
+        return new ResponseResult(_orderMapper.Convert(order));
     }
 
     private async Task<double> CalcRequiredBinWidth(List<OrderLine> orderLines, CancellationToken cancellationToken)
@@ -54,11 +71,19 @@ public class OrderService : IOrderService
         foreach (var line in orderLines)
         {
             var productInfo = await _productService.GetProduct(line.ProductId, cancellationToken);
-            totalWidth += productInfo.WidthInMillimeters * (line.Quantity / productInfo.StackSize);
-            totalWidth += productInfo.WidthInMillimeters * (line.Quantity % productInfo.StackSize);
+            if (!productInfo.IsSuccess()) continue;
+            var product = productInfo.GetReuslt<ResponseProduct>();
+            totalWidth += product.WidthInMillimeters * (line.Quantity / product.StackSize);
+            totalWidth += product.WidthInMillimeters * (line.Quantity % product.StackSize);
         }
 
         return totalWidth;
+    }
+
+    public async Task<bool> OrderIsExist(int orderId, CancellationToken cancellationToken)
+    {
+        var result = await GetOrder(orderId, cancellationToken);
+        return result.IsSuccess();
     }
 
 }

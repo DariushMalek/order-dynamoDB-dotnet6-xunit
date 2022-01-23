@@ -6,7 +6,7 @@ namespace Albelli.Shop.Data.Repositories;
 
 public interface IProductRepository
 {
-    Task<Product> GetByProductIdAsync(int productId, CancellationToken cancellationToken);
+    Task<Product?> GetByProductIdAsync(int productId, CancellationToken cancellationToken);
 }
 
 public class ProductRepository : IProductRepository
@@ -18,7 +18,7 @@ public class ProductRepository : IProductRepository
         _dynamoDbContext = dynamoDbContext;
     }
 
-    public async Task<Product> GetByProductIdAsync(int productId, CancellationToken cancellationToken)
+    public async Task<Product?> GetByProductIdAsync(int productId, CancellationToken cancellationToken)
     {
         var scanConditions = new List<ScanCondition>
         {
@@ -33,6 +33,6 @@ public class ProductRepository : IProductRepository
         };
         var result = await _dynamoDbContext.ScanAsync<Product>(scanConditions,
             new DynamoDBOperationConfig { OverrideTableName = DataOptions.ProductTable }).GetRemainingAsync(cancellationToken);
-        return result.FirstOrDefault();
+        return result.Any() ? result.FirstOrDefault() : null;
     }
 }

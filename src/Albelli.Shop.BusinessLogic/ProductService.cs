@@ -1,12 +1,13 @@
 ﻿using Albelli.Shop.BusinessLogic.Mapper;
 using Albelli.Shop.Data.Repositories;
+using Albelli.Shop.Model;
 using Albelli.Shop.Model.Response;
 
 namespace Albelli.Shop.BusinessLogic;
 
 public interface IProductService
 {
-    Task<ResponseProduct> GetProduct(int productId, CancellationToken cancellationToken);
+    Task<ResponseResult> GetProduct(int productId, CancellationToken cancellationToken);
 }
 
 public class ProductService : IProductService
@@ -21,9 +22,13 @@ public class ProductService : IProductService
         _productMapper = productMapper;
     }
 
-    public async Task<ResponseProduct> GetProduct(int productId, CancellationToken cancellationToken)
+    public async Task<ResponseResult> GetProduct(int productId, CancellationToken cancellationToken)
     {
         var product = await _productRepository.GetByProductIdAsync(productId, cancellationToken);
-        return _productMapper.Convert(product);
+        if (product == null)
+        {
+            return new ResponseResult(Messages.ProductNotFound);
+        }
+        return new ResponseResult(_productMapper.Convert(product));
     }
 }

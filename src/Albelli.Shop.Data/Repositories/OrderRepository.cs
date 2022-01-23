@@ -6,7 +6,7 @@ namespace Albelli.Shop.Data.Repositories;
 
 public interface IOrderRepository
 {
-    Task<Order> GetByOrderIdAsync(int orderId, CancellationToken cancellationToken);
+    Task<Order?> GetByOrderIdAsync(int orderId, CancellationToken cancellationToken);
     Task InsertAsync(Order order, CancellationToken cancellationToken);
 }
 
@@ -19,7 +19,7 @@ public class OrderRepository : IOrderRepository
         _dynamoDbContext = dynamoDbContext;
     }
 
-    public async Task<Order> GetByOrderIdAsync(int orderId, CancellationToken cancellationToken)
+    public async Task<Order?> GetByOrderIdAsync(int orderId, CancellationToken cancellationToken)
     {
         var scanConditions = new List<ScanCondition>
         {
@@ -34,7 +34,15 @@ public class OrderRepository : IOrderRepository
         };
         var result = await _dynamoDbContext.ScanAsync<Order>(scanConditions,
             new DynamoDBOperationConfig { OverrideTableName = DataOptions.OrderTable }).GetRemainingAsync(cancellationToken);
-        return result.FirstOrDefault();
+
+        if (result.Any())
+        {
+            return result.FirstOrDefault();
+        }
+        else
+        {
+            return null;
+        }
     }
 
     public async Task InsertAsync(Order order, CancellationToken cancellationToken)

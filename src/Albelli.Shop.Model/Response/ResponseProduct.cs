@@ -1,6 +1,6 @@
 ﻿namespace Albelli.Shop.Model.Response;
 
-public class ResponseProduct
+public class ResponseProduct : BaseResponse
 {
     public int ProductTypeId { get; set; }
 
