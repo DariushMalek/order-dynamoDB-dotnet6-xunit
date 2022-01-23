@@ -1,4 +1,5 @@
 <img src="default_albelli.nl.jpg" width="200">
+
 # .NET Software Engineer Technical Assignment
 
 ## Run project with docker
