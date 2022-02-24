@@ -1,0 +1,14 @@
+<Project Sdk="Microsoft.NET.Sdk">
+
+  <PropertyGroup>
+    <TargetFramework>net6.0</TargetFramework>
+    <ImplicitUsings>enable</ImplicitUsings>
+    <Nullable>enable</Nullable>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <ProjectReference Include="..\TechLand.Shop.Data\TechLand.Shop.Data.csproj" />
+    <ProjectReference Include="..\TechLand.Shop.Model\TechLand.Shop.Model.csproj" />
+  </ItemGroup>
+
+</Project>

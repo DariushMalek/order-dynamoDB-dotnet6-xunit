@@ -10,10 +10,10 @@ services:
     volumes:
       - "./docker/dynamodb:/home/dynamodblocal/data"
     working_dir: /home/dynamodblocal
-  albelli.shop.api:
-    image: ${DOCKER_REGISTRY-}albelli-shop-api
+  techland.shop.api:
+    image: ${DOCKER_REGISTRY-}techland-shop-api
     depends_on:
       - "dynamodb-local"
     build:
       context: .
-      dockerfile: Albelli.Shop.Api/Dockerfile
+      dockerfile: TechLand.Shop.Api/Dockerfile

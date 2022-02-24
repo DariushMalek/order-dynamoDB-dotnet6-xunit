@@ -1,8 +1,8 @@
 version: '3.4'
 
 services:
-  albelli.shop.api:
-    container_name: albelli.shop.api
+  techland.shop.api:
+    container_name: techland.shop.api
     environment:
       - ASPNETCORE_ENVIRONMENT=Development
     ports:
